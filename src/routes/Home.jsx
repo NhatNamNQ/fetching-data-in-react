@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 const Home = () => {
     return (
         <div>
@@ -7,8 +9,8 @@ const Home = () => {
                     <br />
                     fetching in React
                 </h1>
-
             </div>
+            <Outlet />
         </div>
     )
 }
