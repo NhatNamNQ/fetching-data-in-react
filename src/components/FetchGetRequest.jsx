@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import { getRequestWithNativeFetch } from "../lib/fetcherWithFetch";
 
 const FetchGetRequest = () => {
     const [data, setData] = useState(null);
@@ -9,11 +10,7 @@ const FetchGetRequest = () => {
     useEffect(() => {
         const fetchDataForPosts = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=8');
-                if (!response.ok) {
-                    throw new Error(`HTTP error: Status ${response.status}`);
-                }
-                const postsData = await response.json();
+                const postsData = await getRequestWithNativeFetch('https://jsonplaceholder.typicode.com/posts?_limit=8')
                 setData(postsData);
                 setError(null);
             } catch (error) {
@@ -59,7 +56,7 @@ const FetchGetRequest = () => {
             </div>
 
             <div className="bg-gray-100 flex-1 p-4 min-h-[550px]">
-                Single post here...
+                <Outlet />
             </div>
         </div>
     )

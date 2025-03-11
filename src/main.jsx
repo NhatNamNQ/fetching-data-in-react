@@ -4,6 +4,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './routes/Home';
 import FetchGetRequest from './components/FetchGetRequest';
+import Post from './routes/Post';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <FetchGetRequest />
+        element: <FetchGetRequest />,
+        children: [
+          {
+            path: 'posts/:postId',
+            element: <Post />
+          }
+        ]
       }
     ]
   },
