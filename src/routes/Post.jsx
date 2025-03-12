@@ -10,13 +10,19 @@ export default function Post() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        const controller = new AbortController();
+
         const fetchSinglePost = async () => {
             try {
                 const postData = await getRequestWithNativeFetch(
-                    `https://jsonplaceholder.typicode.com/posts/${postId}`
+                    `https://jsonplaceholder.typicode.com/posts/${postId}`, controller.signal
                 )
                 setData(postData);
             } catch (error) {
+                if (error.name === 'AbortError') {
+                    console.log('Aborted');
+                    return;
+                }
                 setError(error.message);
                 setData(null);
             } finally {
@@ -25,6 +31,8 @@ export default function Post() {
         }
 
         fetchSinglePost();
+
+        return () => controller.abort();
     }, [postId])
 
     return (
