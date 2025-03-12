@@ -12,14 +12,8 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        path: '/',
-        element: <FetchGetRequest />,
-        children: [
-          {
             path: 'posts/:postId',
-            element: <Post />
-          }
-        ]
+            element: <Post />,
       }
     ]
   },

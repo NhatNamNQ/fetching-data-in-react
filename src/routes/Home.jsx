@@ -1,4 +1,6 @@
 import { Outlet } from "react-router-dom";
+import FetchGetRequest from "../components/FetchGetRequest";
+import FetchPostRequest from "../components/FetchPostRequest";
 
 const Home = () => {
     return (
@@ -10,7 +12,10 @@ const Home = () => {
                     fetching in React
                 </h1>
             </div>
-            <Outlet />
+            <main>
+                <FetchGetRequest />
+            </main>
+
         </div>
     )
 }
